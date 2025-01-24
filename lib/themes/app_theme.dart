@@ -27,4 +27,10 @@ final ThemeData darkTheme = ThemeData(
     labelMedium: TextStyle(color: AppColor.primaryTextColor),
     labelSmall: TextStyle(color: AppColor.primaryTextColor),
   ),
+
+  appBarTheme: AppBarTheme(
+    backgroundColor: AppColor.primaryColor,
+    iconTheme: IconThemeData(color: AppColor.primaryTextColor, size: 20),
+    titleTextStyle: TextStyle(color: AppColor.primaryTextColor, fontSize: 18),
+  ),
 );
