@@ -4,7 +4,7 @@ import 'package:mobile_app/routes/app_routes.dart';
 import 'package:mobile_app/themes/app_theme.dart';
 
 void main() async {
-  await dotenv.load(fileName: ".env");
+  await dotenv.load();
   runApp(const MyApp());
 }
 
