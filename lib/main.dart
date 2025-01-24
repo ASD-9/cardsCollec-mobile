@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mobile_app/routes/app_routes.dart';
 import 'package:mobile_app/themes/app_theme.dart';
+import 'package:mobile_app/utils/dio_client.dart';
 
 void main() async {
   await dotenv.load();
+  DioClient.addInterceptors();
   runApp(const MyApp());
 }
 
