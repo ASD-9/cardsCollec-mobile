@@ -32,5 +32,33 @@ final ThemeData darkTheme = ThemeData(
     backgroundColor: AppColor.primaryColor,
     iconTheme: IconThemeData(color: AppColor.primaryTextColor, size: 20),
     titleTextStyle: TextStyle(color: AppColor.primaryTextColor, fontSize: 18),
+    scrolledUnderElevation: 0
+  ),
+
+  checkboxTheme: CheckboxThemeData(
+    fillColor: WidgetStateProperty.all(AppColor.primaryAccentColor),
+    checkColor: WidgetStateProperty.all(AppColor.primaryTextColor),
+    shape: CircleBorder(side: BorderSide(color: AppColor.borderColor)),
+  ),
+
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ButtonStyle(
+      backgroundColor: WidgetStateProperty.all(AppColor.primaryAccentColor),
+      iconColor: WidgetStateProperty.all(AppColor.primaryTextColor),
+      side: WidgetStateProperty.all(BorderSide(color: AppColor.borderColor)),
+      shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+      padding: WidgetStateProperty.all(EdgeInsets.symmetric(horizontal: 10, vertical: 10))
+    )
+  ),
+
+  snackBarTheme: SnackBarThemeData(
+    backgroundColor: AppColor.secondaryColor,
+    contentTextStyle: TextStyle(color: AppColor.primaryTextColor),
+    insetPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+  ),
+
+  progressIndicatorTheme: ProgressIndicatorThemeData(
+    color: AppColor.primaryAccentColor,
+    linearTrackColor: AppColor.borderColor,
   ),
 );
