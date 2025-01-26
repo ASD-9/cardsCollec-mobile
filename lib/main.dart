@@ -2,8 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mobile_app/providers/cards_provider.dart';
+import 'package:mobile_app/providers/sets_provider.dart';
 import 'package:mobile_app/routes/app_routes.dart';
 import 'package:mobile_app/services/cards_service.dart';
+import 'package:mobile_app/services/sets_service.dart';
 import 'package:mobile_app/themes/app_theme.dart';
 import 'package:mobile_app/utils/dio_client.dart';
 import 'package:provider/provider.dart';
@@ -15,11 +17,13 @@ void main() async {
   final Dio dio = DioClient.dio;
 
   final CardsService cardsService = CardsService(dio);
+  final SetsService setsService = SetsService(dio);
 
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider<CardsProvider>(create: (_) => CardsProvider(cardsService)),
+        ChangeNotifierProvider<SetsProvider>(create: (_) => SetsProvider(setsService)),
       ],
       child: MyApp(),
     )

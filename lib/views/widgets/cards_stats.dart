@@ -31,7 +31,7 @@ class CardsStats extends StatelessWidget {
                     "${cardsProvider.cards.where((e) => e.isInCollection).length}/${cardsProvider.cards.length}",
                   ),
                   Text(
-                    "${(cardsProvider.cards.where((e) => e.isInCollection).length * 100) / cardsProvider.cards.length}%",
+                    cardsProvider.cards.isEmpty ? "0%" : "${(cardsProvider.cards.where((e) => e.isInCollection).length * 100) / cardsProvider.cards.length}%",
                   ),
                 ],
               ),
@@ -39,7 +39,7 @@ class CardsStats extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           LinearProgressIndicator(
-            value: cardsProvider.cards.where((e) => e.isInCollection).length / cardsProvider.cards.length
+            value: cardsProvider.cards.isEmpty ? 0 : cardsProvider.cards.where((e) => e.isInCollection).length / cardsProvider.cards.length
           )
         ],
       ),
