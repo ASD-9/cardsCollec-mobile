@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/utils/page_transition.dart';
 import 'package:mobile_app/views/screens/card_details_screen.dart';
 import 'package:mobile_app/views/screens/cards_screen.dart';
+import 'package:mobile_app/views/screens/collections_screen.dart';
 import 'package:mobile_app/views/screens/sets_screen.dart';
 
 class AppRoutes {
@@ -14,9 +15,16 @@ class AppRoutes {
       case "/card-details":
         return PageTransition.slideTransition(page: const CardDetailsScreen(), fromBottom: true);
       case "/sets":
-        return PageTransition.slideTransition(page: const SetsScreen(idCollection: 2)); // TODO: make the idCollection dynamic
+        return PageTransition.slideTransition(page: SetsScreen(idCollection: settings.arguments as int));
+      case "/collections":
+        return MaterialPageRoute(
+          builder: (context) => const CollectionsScreen(),
+        );
       default:
-        return PageTransition.slideTransition(page: const SetsScreen(idCollection: 2)); // TODO: to replace
+        // TODO: to replace
+        return MaterialPageRoute(
+          builder: (context) => const CollectionsScreen(),
+        );
     }
   }
 }
