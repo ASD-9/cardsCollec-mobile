@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:mobile_app/providers/cards_provider.dart';
+import 'package:mobile_app/providers/sets_provider.dart';
 import 'package:mobile_app/themes/app_color.dart';
 import 'package:mobile_app/views/widgets/cards_list.dart';
 import 'package:mobile_app/views/widgets/cards_stats.dart';
@@ -22,7 +23,6 @@ class _CardsScreenState extends State<CardsScreen> {
   @override
   void initState() {
     super.initState();
-
     Future.microtask(() => Provider.of<CardsProvider>(context, listen: false).fetchCards(widget.idSet));
   }
 
@@ -30,7 +30,7 @@ class _CardsScreenState extends State<CardsScreen> {
   Widget build(BuildContext context) {
     final CardsProvider cardsProvider = Provider.of<CardsProvider>(context);
     return MainLayout(
-      title: "Cards", // TODO: Replace with the name of the set
+      title: Provider.of<SetsProvider>(context, listen: false).sets.firstWhere((e) => e.id == widget.idSet).name,
       actions: [
         IconButton(
           icon: Icon(
@@ -83,7 +83,7 @@ class _CardsScreenState extends State<CardsScreen> {
         : cardsProvider.error != null
           ? Reload(
             error: cardsProvider.error!,
-            onTap: () => Provider.of<CardsProvider>(context, listen: false).fetchCards(widget.idSet)
+            onTap: () => cardsProvider.fetchCards(widget.idSet)
           )
           : Column(
             children: [
