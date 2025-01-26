@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:mobile_app/providers/collections_provider.dart';
 import 'package:mobile_app/providers/sets_provider.dart';
 import 'package:mobile_app/themes/app_color.dart';
 import 'package:mobile_app/views/widgets/main_layout.dart';
@@ -28,7 +29,7 @@ class _SetsScreenState extends State<SetsScreen> {
   Widget build(BuildContext context) {
     final SetsProvider setsProvider = Provider.of<SetsProvider>(context);
     return MainLayout(
-      title: "Sets", // TODO: Replace with the name of the collection
+      title: Provider.of<CollectionsProvider>(context, listen: false).collections.firstWhere((e) => e.id == widget.idCollection).name,
       body: setsProvider.isLoading
         ? Center(
           child: LoadingAnimationWidget.fourRotatingDots(
