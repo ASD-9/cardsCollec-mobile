@@ -5,20 +5,24 @@ class ErrorHandler {
     if (error is DioException) {
       // Errors Dio
       switch (error.type) {
-        case DioException.connectionTimeout:
+        case DioExceptionType.connectionTimeout:
           return "La connexion a expiré. Veuillez vérifier votre connexion internet.";
-        case DioException.sendTimeout:
+        case DioExceptionType.sendTimeout:
           return "Le délai d'envoi des données a expiré.";
-        case DioException.receiveTimeout:
+        case DioExceptionType.receiveTimeout:
           return "Le délai de réponse a expiré.";
-        case DioException.badResponse:
+        case DioExceptionType.badResponse:
           // HTTP specific errors
           if (error.response?.statusCode == 500) {
             return error.response?.data["message"] ?? "Erreur serveur. Veuillez réessayer plus tard.";
+          } else if (error.response?.statusCode == 401) {
+            return error.response?.data["message"] ?? "Erreur d'authentification.";
+          } else if (error.response?.statusCode == 400) {
+            return error.response?.data["message"] ?? "Erreur de validation.";
           } else {
             return "Erreur inattendue : ${error.response?.statusCode}";
           }
-        case DioException.requestCancelled:
+        case DioExceptionType.cancel:
           return "La requête a été annulée.";
         default:
           return "Une erreur inconnue est survenue.";
