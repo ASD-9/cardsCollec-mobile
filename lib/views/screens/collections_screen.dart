@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:mobile_app/providers/auth_provider.dart';
 import 'package:mobile_app/providers/collections_provider.dart';
 import 'package:mobile_app/themes/app_color.dart';
 import 'package:mobile_app/views/widgets/collections_list.dart';
@@ -27,6 +28,16 @@ class _CollectionsScreenState extends State<CollectionsScreen> {
     final CollectionsProvider collectionsProvider = Provider.of<CollectionsProvider>(context);
     return MainLayout(
       title: "Collections",
+      actions: [
+        IconButton(
+          icon: Icon(
+            Icons.logout,
+          ),
+          onPressed: () {
+            Provider.of<AuthProvider>(context, listen: false).logout();
+          },
+        )
+      ],
       body: collectionsProvider.isLoading
         ? Center(
           child: LoadingAnimationWidget.fourRotatingDots(
